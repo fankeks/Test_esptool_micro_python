@@ -16,10 +16,10 @@ arr1 = [random.random() for _ in range(n)]
 arr2 = [random.random() for _ in range(n)]
 
 start = time.time_ns()
-t1 = _thread.start_new_thread(th, (0, arr1, arr2, 0, n//2))
-t2 = _thread.start_new_thread(th, (1, arr1, arr2, n//2, n))
+t1 = _thread.start_new_thread(th, (0, arr1, arr2, 0, n))
+t2 = _thread.start_new_thread(th, (1, arr1, arr2, 0, n))
 while not(exitstatus[0] and exitstatus[0]):
-    print(1)
+    pass
 print(time.time_ns() - start)
 
 
