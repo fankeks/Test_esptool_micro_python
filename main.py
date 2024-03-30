@@ -1,6 +1,14 @@
 import machine
 import time
 import random
+import _thread
+
+
+exitstatus = [False for _ in range(2)]
+def th(threadnum, arr1, arr2, start, stop):
+    for i in range(start, stop):
+        arr1[i] + arr2[i]
+    exitstatus[threadnum] = True
 
 print(machine.freq())
 n = 3000
@@ -8,9 +16,10 @@ arr1 = [random.random() for _ in range(n)]
 arr2 = [random.random() for _ in range(n)]
 
 start = time.time_ns()
-for i in range(n):
-    arr1[i] + arr2[i]
-    #print(arr3[i])
+t1 = _thread.start_new_thread(th, (0, arr1, arr2, 0, n//2))
+t2 = _thread.start_new_thread(th, (1, arr1, arr2, n//2, n))
+while not(exitstatus[0] and exitstatus[0]):
+    print(1)
 print(time.time_ns() - start)
 
 
